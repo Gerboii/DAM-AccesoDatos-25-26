@@ -15,7 +15,7 @@ public class producto {
 // o Productos: id (pk), nombre, descripción, cantidad, precio.
 //o Productos_Fav: id (pk), id_producto (fk)
 int id;
-String name;
+String title;
 String description;
 double price;
 int stock;

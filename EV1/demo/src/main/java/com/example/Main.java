@@ -18,7 +18,7 @@ public class Main {
             URL url = new URL("https://dummyjson.com/products");
             try {
                 productoResponse response = mapper.readValue(url,productoResponse.class);
-                for (producto p : response.getProdList()) {
+                for (producto p : response.getProducts()) {
                     System.out.println(p);
                 }
             } catch (StreamReadException e) {

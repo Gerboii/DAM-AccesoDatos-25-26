@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 
 public class productoResponse {
 
-    private List <producto> prodList;
+    private List <producto> products;
 
 }
