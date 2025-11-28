@@ -22,14 +22,11 @@ public class Main {
                     System.out.println(p);
                 }
             } catch (StreamReadException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println("Error en lectura JSON.");
             } catch (DatabindException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println("Error en el mapeo JSON.");
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println("Error en la conexión JSON.");
             }
 
         } catch (MalformedURLException e) {
