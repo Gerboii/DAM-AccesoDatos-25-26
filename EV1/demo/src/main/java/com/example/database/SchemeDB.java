@@ -11,6 +11,7 @@ String COL_NAME = "nombre";
 String COL_DESCRIP = "descripcion";
 String COL_CANTIDAD = "cantidad";
 String COL_PRECIO = "precio";
+
 String COL_ID_PROD = "id_producto";
 
 }

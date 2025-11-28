@@ -1,38 +1,49 @@
 package com.example;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.Scanner;
 
-import com.example.modelos.Producto;
-import com.example.modelos.ProductoResponse;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.controller.NorthwindController;
 
 public class Main {
     public static void main(String[] args) {
 
-        ObjectMapper mapper = new  ObjectMapper();
-        try {
-            URL url = new URL("https://dummyjson.com/products");
-            try {
-                ProductoResponse response = mapper.readValue(url,ProductoResponse.class);
-                for (Producto p : response.getProducts()) {
-                    System.out.println(p);
-                }
-            } catch (StreamReadException e) {
-                System.out.println("Error en lectura JSON.");
-            } catch (DatabindException e) {
-                System.out.println("Error en el mapeo JSON.");
-            } catch (IOException e) {
-                System.out.println("Error en la conexión JSON.");
+        int opcion;
+        Scanner sc = new Scanner(System.in);
+        NorthwindController nc = new NorthwindController();
+
+        System.out.println("\\\\Bienvenido al gestor del almacen de Northwind////");
+        System.out.printf("MENU: \n 1)Crear la base de datos almacén. \n 2)Agregar productos desde el JSON \n ");
+        System.out.printf("3)Mostrar productos por consola. \n 4)Mostrar favoritos por consola. \n ");
+        System.out.printf("5)Productos por menos de 600€ \n 6)Insertar favoritos. \n 7)Salir \n");
+        System.out.println("Indica el número de la opción deseada: ");
+        opcion = sc.nextInt();
+        do {                       
+            switch (opcion) {
+                case 1:
+                    nc.crearBBDD();
+                    break;
+                case 2:
+                    nc.cargarDatos();
+                    break;
+                case 3:
+                    nc.mostrarProductos();
+                    break;
+                case 4:
+                    nc.mostrarFavoritos();
+                    break;
+                case 5:
+                    nc.mostrar600();
+                    break;
+                case 6:
+                    nc.cargarFavoritos();
+                    break;
+                case 7:
+                    System.out.println("Hasta la próxima.");
+                    break;
+                default:
+                    throw new AssertionError();
             }
-
-        } catch (MalformedURLException e) {
-            System.out.println("Error en la URL.");
-        }
-
+            } while (opcion!=7);
     }
 
 }
