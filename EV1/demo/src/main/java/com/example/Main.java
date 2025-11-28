@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.example.modelos.producto;
-import com.example.modelos.productoResponse;
+import com.example.modelos.Producto;
+import com.example.modelos.ProductoResponse;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,8 +17,8 @@ public class Main {
         try {
             URL url = new URL("https://dummyjson.com/products");
             try {
-                productoResponse response = mapper.readValue(url,productoResponse.class);
-                for (producto p : response.getProducts()) {
+                ProductoResponse response = mapper.readValue(url,ProductoResponse.class);
+                for (Producto p : response.getProducts()) {
                     System.out.println(p);
                 }
             } catch (StreamReadException e) {

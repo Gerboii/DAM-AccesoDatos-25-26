@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonIgnoreProperties(ignoreUnknown=true)
 
-public class producto {
+public class Producto {
 // o Productos: id (pk), nombre, descripción, cantidad, precio.
 //o Productos_Fav: id (pk), id_producto (fk)
 int id;

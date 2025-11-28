@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonIgnoreProperties(ignoreUnknown=true)
 
-public class productoResponse {
+public class ProductoResponse {
 
-    private List <producto> products;
+    private List <Producto> products;
 
 }
