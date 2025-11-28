@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 import com.example.database.DBConnection;
@@ -21,8 +22,21 @@ public class ProductoDaoImp implements ProductoDao{
 
     @Override
     public int crearBBDD() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crearBBDD'");
+        final String urlServer = "jdbc:mysql://localhost:3306";
+        //Bypass al singletone para crear la base de datos
+        try (Connection tempConn = DriverManager.getConnection(urlServer, "root", "")) {
+            String query = String.format("DROP DATABASE IF EXISTS %s", SchemeDB.DB_NAME);
+            String query2 = String.format("CREATE DATABASE  %s", SchemeDB.DB_NAME);
+            preparedStatement= tempConn.prepareStatement(query);
+            preparedStatement= tempConn.prepareStatement(query2);
+            
+            return 1;
+
+        } catch (Exception e) {
+            System.out.println("Error conectando al servidor"+e.getMessage());
+            return 0;
+        }        
+        
     }
     
     @Override

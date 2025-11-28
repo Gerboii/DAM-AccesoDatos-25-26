@@ -3,6 +3,8 @@ package com.example.database;
 public interface  SchemeDB {
 /*Productos: id (pk), nombre, descripción, cantidad, precio.
 o Productos_Fav: id (pk), id_producto (fk) */
+String DB_NAME = "almacen";
+
 String TAB_PROD = "productos";
 String TAB_FAV = "productos_fav"; 
 

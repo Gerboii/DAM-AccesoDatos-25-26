@@ -13,9 +13,9 @@ public class DBConnection {
     }
 
     private static void createConnection(){
-        String url = "";
+        String url = "jdbc:mysql://localhost:3306/almacen";
         String user = "root";
-        String pass = "jdbc:mysql://localhost:3306/almacen";
+        String pass = "";
         try {
             connection=DriverManager.getConnection(url, user, pass);            
         } catch (SQLException e) {
