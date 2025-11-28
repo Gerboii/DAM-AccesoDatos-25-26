@@ -1,6 +1,6 @@
 package com.example.database;
 
-public class SchemeDB {
+public interface  SchemeDB {
 /*Productos: id (pk), nombre, descripción, cantidad, precio.
 o Productos_Fav: id (pk), id_producto (fk) */
 String TAB_PROD = "productos";
