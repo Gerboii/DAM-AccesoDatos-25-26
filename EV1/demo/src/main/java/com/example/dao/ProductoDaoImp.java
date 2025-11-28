@@ -27,15 +27,23 @@ public class ProductoDaoImp implements ProductoDao{
         try (Connection tempConn = DriverManager.getConnection(urlServer, "root", "")) {
             String query = String.format("DROP DATABASE IF EXISTS %s", SchemeDB.DB_NAME);
             String query2 = String.format("CREATE DATABASE  %s", SchemeDB.DB_NAME);
+            String query3 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY, %s VARCHAR(50), %s VARCHAR(100), %s INT, %s DOUBLE)",
+             SchemeDB.DB_NAME,SchemeDB.TAB_PROD,SchemeDB.COL_ID,SchemeDB.COL_NAME,SchemeDB.COL_DESCRIP,SchemeDB.COL_CANTIDAD,SchemeDB.COL_PRECIO);
+            String query4 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY, %s INT, FOREIGN KEY (%s) REFERENCES %s.%s(%s))",
+             SchemeDB.DB_NAME,SchemeDB.TAB_FAV,SchemeDB.COL_ID,SchemeDB.COL_ID_PROD,SchemeDB.COL_ID_PROD,SchemeDB.DB_NAME,SchemeDB.TAB_PROD,SchemeDB.COL_ID);
             preparedStatement= tempConn.prepareStatement(query);
+            preparedStatement.executeUpdate();
             preparedStatement= tempConn.prepareStatement(query2);
-            
-            return 1;
+            preparedStatement.executeUpdate();
+            preparedStatement= tempConn.prepareStatement(query3);
+            preparedStatement.executeUpdate();
+            preparedStatement= tempConn.prepareStatement(query4);
+            return preparedStatement.executeUpdate();             
 
         } catch (Exception e) {
             System.out.println("Error conectando al servidor"+e.getMessage());
             return 0;
-        }        
+        }       
         
     }
     
