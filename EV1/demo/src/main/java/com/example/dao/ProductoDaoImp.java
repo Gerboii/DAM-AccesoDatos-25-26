@@ -29,7 +29,8 @@ public class ProductoDaoImp implements ProductoDao{
     public int actualizarBBDD() {
         /*o Productos: id (pk), nombre, descripción, cantidad, precio.
         o Productos_Fav: id (pk), id_producto (fk)*/
-        String query = String.format("INSERT INTO %s (%s,%s,%s,%s,%s) VALUES (?,?,?,?,?)", SchemeDB.TAB_PROD,SchemeDB.COL_ID,SchemeDB.COL_NAME,SchemeDB.COL_DESCRIP,SchemeDB.COL_CANTIDAD,SchemeDB.COL_PRECIO);
+        String query = String.format("INSERT INTO %s (%s,%s,%s,%s,%s) VALUES (?,?,?,?,?)",
+        SchemeDB.TAB_PROD,SchemeDB.COL_ID,SchemeDB.COL_NAME,SchemeDB.COL_DESCRIP,SchemeDB.COL_CANTIDAD,SchemeDB.COL_PRECIO);
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1,p.getId());
@@ -43,10 +44,18 @@ public class ProductoDaoImp implements ProductoDao{
     }
 
     @Override
-    public void listarProducto(String tipo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarProducto'");
+    public void listarProducto(String tipo) {        
+        if (tipo.equals("productos")){
+        //SELECT de productos
+        String query = String.format("SELECT * FROM %s", SchemeDB.TAB_PROD);
+        }
+        else {
+        //SELECT de favoritos
+        String query = String.format("SELECT * FROM %s", SchemeDB.TAB_FAV);
+
+        }
     }
+
 
     @Override
     public void listarFiltrado() {
