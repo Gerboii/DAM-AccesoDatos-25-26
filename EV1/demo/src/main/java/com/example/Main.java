@@ -1,9 +1,43 @@
 package com.example;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import com.example.modelos.producto;
+import com.example.modelos.productoResponse;
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        ObjectMapper mapper = new  ObjectMapper();
+        try {
+            URL url = new URL("https://dummyjson.com/products");
+            try {
+                productoResponse response = mapper.readValue(url,productoResponse.class);
+                for (producto p : response.getProdList()) {
+                    System.out.println(p);
+                }
+            } catch (StreamReadException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (DatabindException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        } catch (MalformedURLException e) {
+            System.out.println("Error en la URL.");
+        }
+
     }
+
 }
 
 /*Northwind
