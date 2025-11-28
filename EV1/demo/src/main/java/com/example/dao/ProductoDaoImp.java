@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import com.example.controller.NorthwindController;
 import com.example.database.DBConnection;
 import com.example.database.SchemeDB;
 import com.example.modelos.Producto;
@@ -13,7 +14,7 @@ public class ProductoDaoImp implements ProductoDao{
     private Connection connection;
     private PreparedStatement preparedStatement;
     private Producto p;
-
+    
 //Constructor con la conexion
     public ProductoDaoImp(){
         connection = DBConnection.getConnection();
@@ -23,6 +24,7 @@ public class ProductoDaoImp implements ProductoDao{
     @Override
     public int crearBBDD() {
         final String urlServer = "jdbc:mysql://localhost:3306";
+        
         //Bypass al singletone para crear la base de datos
         try (Connection tempConn = DriverManager.getConnection(urlServer, "root", "")) {
             String query = String.format("DROP DATABASE IF EXISTS %s", SchemeDB.DB_NAME);
@@ -38,7 +40,7 @@ public class ProductoDaoImp implements ProductoDao{
             preparedStatement= tempConn.prepareStatement(query3);
             preparedStatement.executeUpdate();
             preparedStatement= tempConn.prepareStatement(query4);
-            return preparedStatement.executeUpdate();             
+            return preparedStatement.executeUpdate();
 
         } catch (Exception e) {
             System.out.println("Error conectando al servidor"+e.getMessage());

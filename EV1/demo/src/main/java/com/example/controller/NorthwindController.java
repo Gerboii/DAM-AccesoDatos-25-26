@@ -3,6 +3,7 @@ package com.example.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 
 import com.example.dao.ProductoDaoImp;
 import com.example.modelos.Producto;
@@ -13,7 +14,49 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class NorthwindController {
 private ProductoDaoImp pd = new ProductoDaoImp();
-
+public void menu(){
+    int opcion ;
+    Scanner sc = new Scanner(System.in);
+    NorthwindController nc = new NorthwindController();
+    
+    System.out.println("\\\\Bienvenido al gestor del almacen de Northwind////");
+    System.out.printf("MENU: \n 1)Crear la base de datos almacén. \n 2)Agregar productos desde el JSON \n ");
+    System.out.printf("3)Mostrar productos por consola. \n 4)Mostrar favoritos por consola. \n ");
+    System.out.printf("5)Productos por menos de 600€ \n 6)Insertar favoritos. \n 7)Salir \n");
+    System.out.println("Indica el número de la opción deseada: ");
+    
+    
+    do {
+        opcion = sc.nextInt();                       
+        switch (opcion) {
+            case 1:
+                nc.crearBBDD();
+                menu();
+                break;
+            case 2:
+                nc.cargarDatos();
+                break;
+            case 3:
+                nc.mostrarProductos();
+                break;
+            case 4:
+                nc.mostrarFavoritos();
+                break;
+            case 5:
+                nc.mostrar600();
+                break;
+            case 6:
+                nc.cargarFavoritos();
+                break;
+            case 7:
+                System.out.println("Hasta la próxima.");
+                break;
+            default:
+                System.out.println("Número incorrecto, vuelve a intentarlo.");
+        }
+        } while (opcion!=7);
+        
+}
 public void crearBBDD(){
     /*Crea una base de datos llamada almacén con las siguientes tablas y campos
         o Productos: id (pk), nombre, descripción, cantidad, precio.
