@@ -1,6 +1,16 @@
 package com.example.dao;
 
+import java.sql.Connection;
+
+import com.example.database.DBConnection;
+
 public class ProductoDaoImp implements ProductoDao{
+    
+    private Connection connection;
+//Constructor con la conexion
+    public ProductoDaoImp(){
+        connection = DBConnection.getConnection();
+    }
 //Definimos las sentencias SQL para que las pueda usar el controlador
 
     @Override
