@@ -16,6 +16,7 @@ public class ProductoDaoImp implements ProductoDao{
 
     private Connection connection;
     private PreparedStatement preparedStatement;
+    private PreparedStatement insertStatement;
     private Resultset rs;
     
 //Constructor con la conexion
@@ -34,7 +35,7 @@ public class ProductoDaoImp implements ProductoDao{
             String query2 = String.format("CREATE DATABASE  %s", SchemeDB.DB_NAME);
             String query3 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY, %s VARCHAR(50), %s VARCHAR(200), %s INT, %s DOUBLE)",
              SchemeDB.DB_NAME,SchemeDB.TAB_PROD,SchemeDB.COL_ID,SchemeDB.COL_NAME,SchemeDB.COL_DESCRIP,SchemeDB.COL_CANTIDAD,SchemeDB.COL_PRECIO);
-            String query4 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY, %s INT, FOREIGN KEY (%s) REFERENCES %s.%s(%s))",
+            String query4 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY AUTO_INCREMENT, %s INT, FOREIGN KEY (%s) REFERENCES %s.%s(%s))",
              SchemeDB.DB_NAME,SchemeDB.TAB_FAV,SchemeDB.COL_ID,SchemeDB.COL_ID_PROD,SchemeDB.COL_ID_PROD,SchemeDB.DB_NAME,SchemeDB.TAB_PROD,SchemeDB.COL_ID);
             preparedStatement= tempConn.prepareStatement(query);
             preparedStatement.executeUpdate();
@@ -165,8 +166,25 @@ public class ProductoDaoImp implements ProductoDao{
 
     @Override
     public void actualizarFav() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actualizarFav'");
+       String query = String.format("SELECT * FROM %s WHERE %s > 1000", SchemeDB.TAB_PROD, SchemeDB.COL_PRECIO);
+       String query2 = String.format("INSERT INTO %s (%s) VALUES (?)",SchemeDB.TAB_FAV,SchemeDB.COL_ID_PROD);
+            try {
+                preparedStatement = DBConnection.getConnection().prepareStatement(query);
+                PreparedStatement stmtInsert = DBConnection.getConnection().prepareStatement(query2);
+                ResultSet rs= preparedStatement.executeQuery();
+                boolean hayDatos = false;                
+                while(rs.next()){
+                    hayDatos = true;                    
+                    stmtInsert.setInt(1,rs.getInt(SchemeDB.COL_ID));
+                    stmtInsert.executeUpdate();
+                }
+                if(!hayDatos){
+                    System.out.println("No hay datos en la tabla.");
+                }
+                
+            } catch (SQLException ex) {
+                System.out.println("Fallo en la conexión."+ex.getMessage());
+            }
     }
 
 }
