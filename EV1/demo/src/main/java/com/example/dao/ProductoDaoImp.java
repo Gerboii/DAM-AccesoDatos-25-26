@@ -83,9 +83,11 @@ public class ProductoDaoImp implements ProductoDao{
         //SELECT de productos
         String query = String.format("SELECT * FROM %s", SchemeDB.TAB_PROD);
             try {
-                preparedStatement = connection.prepareStatement(query);
+                preparedStatement = DBConnection.getConnection().prepareStatement(query);
                 ResultSet rs= preparedStatement.executeQuery();
+                boolean hayDatos = false;
                 while(rs.next()){
+                    hayDatos = true;
                     int id = rs.getInt(SchemeDB.COL_ID);
                     String nombre = rs.getString(SchemeDB.COL_NAME);
                     String desc = rs.getString(SchemeDB.COL_DESCRIP);
@@ -95,6 +97,9 @@ public class ProductoDaoImp implements ProductoDao{
                   String p = String.format("ID: %s | Nombre: %s | Descripción: %s | Cantidad: %s | Precio: %s",id,nombre, desc,cant,precio);
                   System.out.println(p);
                 }
+                if(!hayDatos){
+                    System.out.println("No hay datos en la tabla.");
+                }
                 
             } catch (SQLException ex) {
                 System.out.println("Fallo en la conexión."+ex.getMessage());
@@ -103,11 +108,14 @@ public class ProductoDaoImp implements ProductoDao{
         else {
         //SELECT de favoritos
         //SELECT * FROM productos WHERE (id EQUALS prod_fav.id_producto)
-        String query = String.format("SELECT * FROM %s WHERE (%s EQUALS %s.%s)", SchemeDB.TAB_PROD, SchemeDB.COL_ID, SchemeDB.TAB_FAV,SchemeDB.COL_ID_PROD);
+        String query = String.format("SELECT * FROM %s INNER JOIN %s ON %s.%s = %s.%s",
+        SchemeDB.TAB_PROD, SchemeDB.TAB_FAV,SchemeDB.TAB_PROD,SchemeDB.COL_ID,SchemeDB.TAB_FAV,SchemeDB.COL_ID_PROD);
             try {
-                preparedStatement = connection.prepareStatement(query);
+                preparedStatement = DBConnection.getConnection().prepareStatement(query);
                 ResultSet rs= preparedStatement.executeQuery();
+                boolean hayDatos = false;
                 while(rs.next()){
+                    hayDatos=true; 
                     int id = rs.getInt(SchemeDB.COL_ID);
                     String nombre = rs.getString(SchemeDB.COL_NAME);
                     String desc = rs.getString(SchemeDB.COL_DESCRIP);
@@ -116,6 +124,9 @@ public class ProductoDaoImp implements ProductoDao{
 
                   String p = String.format("ID: %s | Nombre: %s | Descripción: %s | Cantidad: %s | Precio: %s",id,nombre, desc,cant,precio);
                   System.out.println(p);
+                }
+                if(!hayDatos){
+                    System.out.println("No hay datos en la tabla.");
                 }
                 
             } catch (SQLException ex) {
