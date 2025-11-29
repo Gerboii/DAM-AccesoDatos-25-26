@@ -17,15 +17,13 @@ public void menu(){
     int opcion ;
     Scanner sc = new Scanner(System.in);
     NorthwindController nc = new NorthwindController();
-    
-    System.out.println("\\\\Bienvenido al gestor del almacen de Northwind////");
-    System.out.printf("MENU: \n 1)Crear la base de datos almacén. \n 2)Agregar productos desde el JSON \n ");
-    System.out.printf("3)Mostrar productos por consola. \n 4)Mostrar favoritos por consola. \n ");
-    System.out.printf("5)Productos por menos de 600€ \n 6)Insertar favoritos. \n 7)Salir \n");
-    System.out.print("Indica el número de la opción deseada: ");
-    
-    
+        
     do {
+        System.out.println("\\\\Bienvenido al gestor del almacen de Northwind////");
+        System.out.printf("MENU: \n 1)Crear la base de datos almacén. \n 2)Agregar productos desde el JSON \n ");
+        System.out.printf("3)Mostrar productos por consola. \n 4)Mostrar favoritos por consola. \n ");
+        System.out.printf("5)Productos por menos de 600€ \n 6)Insertar favoritos. \n 7)Salir \n");
+        System.out.print("Indica el número de la opción deseada: ");
         opcion = sc.nextInt();                       
         switch (opcion) {
             case 1:
@@ -52,7 +50,7 @@ public void menu(){
                 break;
             default:
                 System.out.println("Número incorrecto, vuelve a intentarlo.");
-        }
+        }        
         } while (opcion!=7);
         
 }
