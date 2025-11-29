@@ -138,8 +138,29 @@ public class ProductoDaoImp implements ProductoDao{
 
     @Override
     public void listarFiltrado() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarFiltrado'");
+        String query = String.format("SELECT * FROM %s WHERE %s < 600", SchemeDB.TAB_PROD, SchemeDB.COL_PRECIO);
+            try {
+                preparedStatement = DBConnection.getConnection().prepareStatement(query);
+                ResultSet rs= preparedStatement.executeQuery();
+                boolean hayDatos = false;
+                while(rs.next()){
+                    hayDatos = true;
+                    int id = rs.getInt(SchemeDB.COL_ID);
+                    String nombre = rs.getString(SchemeDB.COL_NAME);
+                    String desc = rs.getString(SchemeDB.COL_DESCRIP);
+                    int cant = rs.getInt(SchemeDB.COL_CANTIDAD);
+                    double precio = rs.getDouble(SchemeDB.COL_PRECIO);
+
+                  String p = String.format("ID: %s | Nombre: %s | Descripción: %s | Cantidad: %s | Precio: %s",id,nombre, desc,cant,precio);
+                  System.out.println(p);
+                }
+                if(!hayDatos){
+                    System.out.println("No hay datos en la tabla.");
+                }
+                
+            } catch (SQLException ex) {
+                System.out.println("Fallo en la conexión."+ex.getMessage());
+            }
     }
 
     @Override
