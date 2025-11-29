@@ -16,7 +16,7 @@ private ProductoDaoImp pd = new ProductoDaoImp();
 public void menu(){
     int opcion ;
     Scanner sc = new Scanner(System.in);
-    NorthwindController nc = new NorthwindController();
+    NorthwindController nc;
         
     do {
         System.out.println("\\\\Bienvenido al gestor del almacen de Northwind////");
@@ -27,23 +27,22 @@ public void menu(){
         opcion = sc.nextInt();                       
         switch (opcion) {
             case 1:
-                nc.crearBBDD();
-                menu();
+                crearBBDD();
                 break;
             case 2:
-                nc.cargarDatos();
+                cargarDatos();
                 break;
             case 3:
-                nc.mostrarProductos();
+                mostrarProductos();
                 break;
             case 4:
-                nc.mostrarFavoritos();
+                mostrarFavoritos();
                 break;
             case 5:
-                nc.mostrar600();
+                mostrar600();
                 break;
             case 6:
-                nc.cargarFavoritos();
+                cargarFavoritos();
                 break;
             case 7:
                 System.out.println("Hasta la próxima.");
