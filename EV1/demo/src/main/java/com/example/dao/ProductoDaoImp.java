@@ -3,8 +3,8 @@ package com.example.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.List;
 
-import com.example.controller.NorthwindController;
 import com.example.database.DBConnection;
 import com.example.database.SchemeDB;
 import com.example.modelos.Producto;
@@ -13,7 +13,6 @@ public class ProductoDaoImp implements ProductoDao{
 
     private Connection connection;
     private PreparedStatement preparedStatement;
-    private Producto p;
     
 //Constructor con la conexion
     public ProductoDaoImp(){
@@ -29,7 +28,7 @@ public class ProductoDaoImp implements ProductoDao{
         try (Connection tempConn = DriverManager.getConnection(urlServer, "root", "")) {
             String query = String.format("DROP DATABASE IF EXISTS %s", SchemeDB.DB_NAME);
             String query2 = String.format("CREATE DATABASE  %s", SchemeDB.DB_NAME);
-            String query3 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY, %s VARCHAR(50), %s VARCHAR(100), %s INT, %s DOUBLE)",
+            String query3 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY, %s VARCHAR(50), %s VARCHAR(200), %s INT, %s DOUBLE)",
              SchemeDB.DB_NAME,SchemeDB.TAB_PROD,SchemeDB.COL_ID,SchemeDB.COL_NAME,SchemeDB.COL_DESCRIP,SchemeDB.COL_CANTIDAD,SchemeDB.COL_PRECIO);
             String query4 = String.format("CREATE TABLE %s.%s (%s INT PRIMARY KEY, %s INT, FOREIGN KEY (%s) REFERENCES %s.%s(%s))",
              SchemeDB.DB_NAME,SchemeDB.TAB_FAV,SchemeDB.COL_ID,SchemeDB.COL_ID_PROD,SchemeDB.COL_ID_PROD,SchemeDB.DB_NAME,SchemeDB.TAB_PROD,SchemeDB.COL_ID);
@@ -50,21 +49,28 @@ public class ProductoDaoImp implements ProductoDao{
     }
     
     @Override
-    public int actualizarBBDD() {
+    public void actualizarBBDD(List<Producto> listaproducto) {
         /*o Productos: id (pk), nombre, descripción, cantidad, precio.
         o Productos_Fav: id (pk), id_producto (fk)*/
         String query = String.format("INSERT INTO %s (%s,%s,%s,%s,%s) VALUES (?,?,?,?,?)",
         SchemeDB.TAB_PROD,SchemeDB.COL_ID,SchemeDB.COL_NAME,SchemeDB.COL_DESCRIP,SchemeDB.COL_CANTIDAD,SchemeDB.COL_PRECIO);
         try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1,p.getId());
-            preparedStatement.setString(2, p.getTitle());
-            preparedStatement.setString(3,p.getDescription());
-            preparedStatement.setInt(4, p.getStock());
-            preparedStatement.setDouble(4, p.getPrice());
+            //preparedStatement = connection.prepareStatement(query);
+            //Antes apuntabamos al servidor, hay que conectar a la BD
+            preparedStatement = DBConnection.getConnection().prepareStatement(query);
+            for (Producto p : listaproducto) {
+                preparedStatement.setInt(1,p.getId());
+                preparedStatement.setString(2, p.getTitle());
+                preparedStatement.setString(3,p.getDescription());
+                preparedStatement.setInt(4, p.getStock());
+                preparedStatement.setDouble(5, p.getPrice());
+                //Insercion del obj
+                preparedStatement.executeUpdate();
+            }
+            
         } catch (Exception e) {
+            System.out.println("Error en la carga de datos."+e.getMessage());
         }
-        return 0;
     }
 
     @Override

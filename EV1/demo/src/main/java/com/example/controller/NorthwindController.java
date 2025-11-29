@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.Scanner;
 
 import com.example.dao.ProductoDaoImp;
-import com.example.modelos.Producto;
 import com.example.modelos.ProductoResponse;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -23,7 +22,7 @@ public void menu(){
     System.out.printf("MENU: \n 1)Crear la base de datos almacén. \n 2)Agregar productos desde el JSON \n ");
     System.out.printf("3)Mostrar productos por consola. \n 4)Mostrar favoritos por consola. \n ");
     System.out.printf("5)Productos por menos de 600€ \n 6)Insertar favoritos. \n 7)Salir \n");
-    System.out.println("Indica el número de la opción deseada: ");
+    System.out.print("Indica el número de la opción deseada: ");
     
     
     do {
@@ -76,9 +75,11 @@ public void cargarDatos(){
             URL url = new URL("https://dummyjson.com/products");
             try {
                 ProductoResponse response = mapper.readValue(url,ProductoResponse.class);
-                for (Producto p : response.getProducts()) {
-                    System.out.println(p);
-                }
+                
+                    if(response.getProducts()!=null){
+                        pd.actualizarBBDD(response.getProducts());
+                    }
+                
             } catch (StreamReadException e) {
                 System.out.println("Error en lectura JSON.");
             } catch (DatabindException e) {
@@ -90,8 +91,6 @@ public void cargarDatos(){
         } catch (MalformedURLException e) {
             System.out.println("Error en la URL.");
         }
-    //Ejecuta el método de gestionBD
-        pd.actualizarBBDD();
     System.out.println("Operación completa.");
 }
 
