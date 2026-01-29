@@ -17,4 +17,9 @@ public class Profesor {
     private String dni_profesor;
     private String nombre;
     private String contrasena;
+
+    public Profesor(String nombre, String contrasena) {
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+    }
 }
