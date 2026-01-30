@@ -9,6 +9,5 @@ public class MenuController {
 
     @FXML
     public void initialize() {
-        etiquetaTitulo.setText("Sistema Cargado Correctamente");
     }
 }
