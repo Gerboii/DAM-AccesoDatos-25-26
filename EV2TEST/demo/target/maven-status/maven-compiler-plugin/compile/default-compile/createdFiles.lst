@@ -1,0 +1,6 @@
+com\example\controller\MenuController.class
+com\example\modelos\Profesor.class
+com\example\modelos\Alumno.class
+com\example\modelos\Asignatura.class
+com\example\Main.class
+module-info.class
