@@ -4,18 +4,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="325.0" prefWidth="542.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example.controller.MenuController">
+<VBox alignment="CENTER" prefHeight="297.0" prefWidth="544.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.MenuController">
  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="542.0">
       <children>
          <Button id="btnSalir" layoutX="443.0" layoutY="246.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Salir" />
          <Button id="btnEntrar" defaultButton="true" layoutX="350.0" layoutY="245.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Entrar" />
          <Button id="btnLimpiar" layoutX="38.0" layoutY="246.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Limpiar" />
-         <ImageView fitHeight="168.0" fitWidth="233.0" layoutX="269.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
+         <ImageView fitHeight="168.0" fitWidth="233.0" layoutX="314.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../img/Universidad-europea-logo.png" />
+            </image></ImageView>
          <PasswordField id="pfContrasena" layoutX="38.0" layoutY="160.0" prefHeight="26.0" prefWidth="190.0" promptText="Contraseña" />
          <Label layoutX="38.0" layoutY="122.0" text="Contraseña:">
             <font>
