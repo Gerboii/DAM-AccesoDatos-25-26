@@ -14,20 +14,20 @@
 <VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.MenuController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="556.0">
         <children>
-            <Button id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Salir" />
+            <Button id="btnSalir" fx:id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="83.0" text="Salir" />
             <Label layoutX="33.0" layoutY="27.0" text="Docente:">
                 <font>
                     <Font name="System Bold" size="18.0" />
                 </font>
             </Label>
-            <Label fx:id="nombreAlumno" layoutX="125.0" layoutY="32.0" text="&quot;Usuario Ejemplo&quot;" />
-            <ComboBox id="cbAsignaturas" layoutX="149.0" layoutY="61.0" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
+            <Label fx:id="nombreProfesor" layoutX="125.0" layoutY="32.0" text="&quot;Usuario Ejemplo&quot;" />
+            <ComboBox id="cbAsignaturas" fx:id="cbAsignaturas" layoutX="149.0" layoutY="61.0" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
             <Label layoutX="33.0" layoutY="60.0" text="Asignaturas:">
                 <font>
                     <Font name="System Bold" size="18.0" />
                 </font>
             </Label>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="510.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="556.0">
                   <children>
                       <TableView id="tablaNotas" layoutX="31.0" layoutY="106.0" prefHeight="398.0" prefWidth="494.0">
                           <columns>
@@ -41,8 +41,8 @@
             <image>
                <Image url="@../../img/Universidad-europea-logo.png" />
             </image></ImageView>
-            <Button id="btnAtras" layoutX="368.0" layoutY="534.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Atrás" />
-         <Button layoutX="25.0" layoutY="534.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Guardar notas" />
+            <Button id="btnAtras" fx:id="btnAtras" layoutX="368.0" layoutY="534.0" mnemonicParsing="false" onAction="#atras" prefHeight="26.0" prefWidth="83.0" text="Atrás" />
+         <Button fx:id="btnGuardar" layoutX="25.0" layoutY="534.0" mnemonicParsing="false" onAction="#guardar" prefHeight="26.0" prefWidth="106.0" text="Guardar notas" />
         </children>
     </AnchorPane>
 

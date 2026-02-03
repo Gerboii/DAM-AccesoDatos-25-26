@@ -14,30 +14,30 @@
 <VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.MenuController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="556.0">
         <children>
-            <Button id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Salir" />
+            <Button id="btnSalir" fx:id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="83.0" text="Salir" />
             <Label layoutX="33.0" layoutY="27.0" text="Alumn@:">
                 <font>
                     <Font name="System Bold" size="18.0" />
                 </font>
             </Label>
          <Label fx:id="nombreAlumno" layoutX="125.0" layoutY="32.0" text="&quot;Usuario Ejemplo&quot;" />
-         <ComboBox id="cbAsignaturas" layoutX="149.0" layoutY="61.0" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
+         <ComboBox id="cbAsignaturas" fx:id="cbAsignaturas" layoutX="149.0" layoutY="61.0" onAction="#selecciónAsignaturaAlumno" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
          <Label layoutX="33.0" layoutY="60.0" text="Asignaturas:">
             <font>
                <Font name="System Bold" size="18.0" />
             </font>
          </Label>
-         <TableView id="tablaNotas" layoutX="31.0" layoutY="119.0" prefHeight="398.0" prefWidth="494.0">
+         <TableView id="tablaNotas" fx:id="tablaAlumno" layoutX="31.0" layoutY="119.0" prefHeight="398.0" prefWidth="494.0">
            <columns>
-             <TableColumn prefWidth="375.2000301480293" text="Asignatura" />
-             <TableColumn prefWidth="118.39993286132812" text="Nota" />
+             <TableColumn fx:id="columnAsignatura" prefWidth="375.2000301480293" text="Asignatura" />
+             <TableColumn fx:id="columnNota" prefWidth="118.39993286132812" text="Nota" />
            </columns>
          </TableView>
          <ImageView id="logoUem" fitHeight="84.0" fitWidth="106.0" layoutX="425.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../img/Universidad-europea-logo.png" />
             </image></ImageView>
-         <Button id="btnAtras" layoutX="368.0" layoutY="534.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Atrás" />
+         <Button id="btnAtras" fx:id="btnAtras" layoutX="368.0" layoutY="534.0" mnemonicParsing="false" onAction="#atras" prefHeight="26.0" prefWidth="83.0" text="Atrás" />
         </children>
     </AnchorPane>
 
