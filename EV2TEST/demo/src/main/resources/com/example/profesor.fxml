@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.MenuController">
+<VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.ProfesorController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="556.0">
         <children>
             <Button id="btnSalir" fx:id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="83.0" text="Salir" />

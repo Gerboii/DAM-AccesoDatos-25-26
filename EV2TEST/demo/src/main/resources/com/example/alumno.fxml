@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.MenuController">
+<VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.AlumnoController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="556.0">
         <children>
             <Button id="btnSalir" fx:id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="83.0" text="Salir" />
@@ -21,7 +21,7 @@
                 </font>
             </Label>
          <Label fx:id="nombreAlumno" layoutX="125.0" layoutY="32.0" text="&quot;Usuario Ejemplo&quot;" />
-         <ComboBox id="cbAsignaturas" fx:id="cbAsignaturas" layoutX="149.0" layoutY="61.0" onAction="#selecciónAsignaturaAlumno" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
+         <ComboBox id="cbAsignaturas" fx:id="cbAsignaturas" layoutX="149.0" layoutY="61.0" onAction="#seleccionAsignaturaAlumno" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
          <Label layoutX="33.0" layoutY="60.0" text="Asignaturas:">
             <font>
                <Font name="System Bold" size="18.0" />
