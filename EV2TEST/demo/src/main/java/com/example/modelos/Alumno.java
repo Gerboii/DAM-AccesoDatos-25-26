@@ -1,9 +1,6 @@
 package com.example.modelos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +12,13 @@ import lombok.NoArgsConstructor;
 @Table(name ="alumno")
 public class Alumno {
     @Id
-    private String dni_alumno;
+    @Column(name="dni_alumno")
+    private String dniAlumno;
+
+    @Column(name="nombre", nullable = false)
     private String nombre;
+
+    @Column(name="contrasena", nullable = false)
     private String contrasena;
 
     public Alumno(String nombre, String contrasena) {
