@@ -16,7 +16,7 @@ public class Asignatura {
     private String nombre;
 
     //Varias asignaturas se pueden impartir por el mismo profesor.
-    @ManyToOne//TODO (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dni_profesor") // Esta es la FK en la base de datos
     private Profesor profesor;
 }

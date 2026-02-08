@@ -1,9 +1,6 @@
 package com.example.modelos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +12,20 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @Table(name ="nota")
 public class Nota {
-//TODO Implementar fks doble como identidad
+//Meto un Id para no tener que crear una clase independiente con las dos FKs
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    //FK
+    @ManyToOne
+    @JoinColumn(name="dni_alumno")
+    private Alumno alumno;
+    //FK
+    @ManyToOne
+    @JoinColumn(name="nombre_asignatura")
+    private Asignatura asignatura;
+
     @Column(name="nota")
-    private double nota;
+    private double valorNota;
 
 }
