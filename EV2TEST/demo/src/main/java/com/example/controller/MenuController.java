@@ -71,6 +71,23 @@ public class MenuController {
             if (alumno != null) {
                 if (alumno.getContrasena().equals(pass)) {
                     //TODO cambiamos a vista alumno
+                    /*private void abrirVentanaPrincipal() {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/principal.fxml"));
+                            Stage stage = new Stage();
+                            stage.setTitle("Ventana Principal");
+                            stage.setScene(new Scene(loader.load()));
+                            stage.show();
+                            Stage loginStage =(Stage) tfUsuario.getScene().getWindow();
+
+                            // Cerrar ventana de login
+                            Stage loginStage = (Stage) tfUsuario.getScene().getWindow();
+                            loginStage.close();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }*/
                 } else {
                     //TODO contraseña incorrecta
                 }
