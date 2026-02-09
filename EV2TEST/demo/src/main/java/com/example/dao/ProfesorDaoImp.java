@@ -1,12 +1,20 @@
 package com.example.dao;
 
+import com.example.modelos.Profesor;
+import com.example.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 
 public class ProfesorDaoImp {
-    private Session session;
-    private Transaction transaction;
 
-    /*
-     * TODO Método logProfesor() recibe DNI y contraseña devuelve True si es Profesor*/
+    public Profesor buscarPorDni(String dni){
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            //get deprecado a partir de v7
+            return session.find(Profesor.class, dni);
+
+        } catch (Exception e) {
+            System.out.println("Error en búsqueda por DNIp"+e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 }

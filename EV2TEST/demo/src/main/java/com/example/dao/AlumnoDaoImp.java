@@ -1,11 +1,19 @@
 package com.example.dao;
 
+import com.example.modelos.Alumno;
+import com.example.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 public class AlumnoDaoImp {
-    private Session session;
-    private Transaction transaction;
-    /*
-    * TODO Método logAlumno() recibe DNI y contraseña devuelve True si es Alumno*/
+
+    public Alumno buscarPorDni(String dni){
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            //get deprecado a partir de v7
+            return session.find(Alumno.class, dni);
+
+        } catch (Exception e) {
+            System.out.println("Error en búsqueda por DNIa"+e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 }
