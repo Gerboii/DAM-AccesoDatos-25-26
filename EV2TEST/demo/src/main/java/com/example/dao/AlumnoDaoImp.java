@@ -10,7 +10,6 @@ public class AlumnoDaoImp {
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             //get deprecado a partir de v7
             return session.find(Alumno.class, dni);
-
         } catch (Exception e) {
             System.out.println("Error en búsqueda por DNIa"+e.getMessage());
             throw new RuntimeException(e);
