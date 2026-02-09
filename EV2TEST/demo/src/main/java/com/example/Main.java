@@ -3,6 +3,7 @@ package com.example;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -26,8 +27,3 @@ public class Main extends Application {
         launch();
     }
 }
-/*Datos conexión
-String url = "jdbc:mysql://localhost:3306/nombre_tu_base_datos?useSSL=false";
-String user = "root";
-String password = "";
- */

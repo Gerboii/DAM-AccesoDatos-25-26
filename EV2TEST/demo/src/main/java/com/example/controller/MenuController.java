@@ -48,14 +48,13 @@ public class MenuController {
             //Si no se encuentra por profe buscamos alumno
             AlumnoDaoImp alumnoImp = new AlumnoDaoImp();
             Alumno alumno = alumnoImp.buscarPorDni(user);
-
             if (alumno != null) {
                 if (alumno.getContrasena().equals(pass)) {
                     //TODO cambiamos a vista alumno
                 } else {
                     //TODO contraseña incorrecta
                 }
-            } else { //TODO No existe el usuario o credenciales incorrectas}
+            } else { //TODO No existe el usuario o credenciales incorrectas
             }
 
         }
