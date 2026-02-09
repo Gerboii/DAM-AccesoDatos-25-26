@@ -1,17 +1,23 @@
 package com.example.controller;
 
+import com.example.Main;
 import com.example.dao.AlumnoDaoImp;
 import com.example.dao.ProfesorDaoImp;
 import com.example.modelos.Alumno;
 import com.example.modelos.Profesor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MenuController {
-
+    Stage stage;
     @FXML
     private Button btnEntrar;
 
@@ -38,9 +44,23 @@ public class MenuController {
         ProfesorDaoImp profeImp = new ProfesorDaoImp();
         Profesor profe = profeImp.buscarPorDni(user);
 
+        //Evito NullPointerException
         if (profe != null) {
             if (profe.getContrasena().equals(pass)) {
-                //TODO Cambiamos a vista profe
+                //Cambiamos a vista profe
+                //TODO corregir la carga de escena
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("profesor.fxml"));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load());
+                    stage.setTitle("Login UEM");
+                    stage.setScene(scene);
+                    stage.centerOnScreen();
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             } else {
                 //TODO Contraseña incorrecta
             }
@@ -59,6 +79,7 @@ public class MenuController {
 
         }
     }
+
     @FXML
     void limpiar (ActionEvent event){
         tfUsuario.clear();
@@ -68,6 +89,7 @@ public class MenuController {
     @FXML
     void salir (ActionEvent event){
         System.exit(0);
+        //TODO Cerrar la session factory aqui.
     }
 
     }
