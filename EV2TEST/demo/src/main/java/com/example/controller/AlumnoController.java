@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.modelos.Alumno;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 public class AlumnoController {
-
+    private Alumno alumnoLog;
     @FXML
     private Button btnAtras;
 
@@ -59,4 +60,7 @@ public class AlumnoController {
 
     }
 
+    public void setAlumno(Alumno alumno) {
+        this.alumnoLog=alumno;
+    }
 }

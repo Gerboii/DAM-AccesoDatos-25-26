@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.modelos.Profesor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ProfesorController {
-
+    private Profesor profesorLog;
     @FXML
     private Button btnAtras;
 
@@ -28,17 +29,7 @@ public class ProfesorController {
 
     @FXML
     void atras(ActionEvent event) {
-        //TODO sin terminar
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/interfaz.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Login UEM");
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @FXML
@@ -51,4 +42,7 @@ public class ProfesorController {
         System.exit(0);
     }
 
+    public void setProfesor(Profesor profe) {
+        this.profesorLog=profe;
+    }
 }

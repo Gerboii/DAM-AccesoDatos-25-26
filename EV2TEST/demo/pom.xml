@@ -34,7 +34,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!--Comprobar dependencias JFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>

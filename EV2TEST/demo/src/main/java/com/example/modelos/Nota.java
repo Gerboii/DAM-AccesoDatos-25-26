@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Embeddable
 @Table(name ="nota")
 public class Nota {
 //Meto un Id para no tener que crear una clase independiente con las dos FKs
