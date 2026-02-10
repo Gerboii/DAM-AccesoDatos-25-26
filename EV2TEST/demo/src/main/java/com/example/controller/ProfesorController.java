@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.modelos.Profesor;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,11 +59,21 @@ public class ProfesorController {
 
         // Cargar ComboBox al iniciar
         cargarComboBox();
-    }
-    //TODO Crear
+    }*/
+    //TODO Arreglar
     private void cargarComboBox() {
+    ObservableList<String> nombres = FXCollections.observableArrayList();
+        nombres.add("Seleccione una opción");
+        try{
+        //TODO Traer método de AsignaturaDaoImp
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        //cbAsignaturas.setItems(nombres);
+        cbAsignaturas.getSelectionModel().select(0);
     }
-*/
+
     public void setProfesor(Profesor profe) {
         this.profesorLog=profe;
     }
