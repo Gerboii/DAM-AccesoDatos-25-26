@@ -40,25 +40,27 @@ public class MenuController {
         //Variables locales
         String user = tfUsuario.getText();
         String pass = pfContrasena.getText();
+
         //Buscamos por profesor
         ProfesorDaoImp profeImp = new ProfesorDaoImp();
         Profesor profe = profeImp.buscarPorDni(user);
-
         //Evito NullPointerException
         if (profe != null) {
             if (profe.getContrasena().equals(pass)) {
                 //Cambiamos a vista profe
-                //TODO corregir la carga de escena
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("profesor.fxml"));
-                Scene scene = null;
                 try {
-                    scene = new Scene(fxmlLoader.load());
-                    stage.setTitle("Login UEM");
-                    stage.setScene(scene);
-                    stage.centerOnScreen();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profesor.fxml"));
+                    //Crear y mostrar nueva ventana
+                    Stage stage = new Stage();
+                    stage.setTitle("Gestión de notas-"+user);
+                    stage.setScene(new Scene(loader.load()));
                     stage.show();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    //Cerrar ventana anterior
+                    Stage loginStage =(Stage)tfUsuario.getScene().getWindow();
+                    loginStage.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
             } else {
@@ -71,31 +73,26 @@ public class MenuController {
             if (alumno != null) {
                 if (alumno.getContrasena().equals(pass)) {
                     //TODO cambiamos a vista alumno
-                    /*private void abrirVentanaPrincipal() {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/principal.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/alumno.fxml"));
+                            //Crear y mostrar nueva ventana
                             Stage stage = new Stage();
-                            stage.setTitle("Ventana Principal");
+                            stage.setTitle("Evaluaciones-"+user);
                             stage.setScene(new Scene(loader.load()));
                             stage.show();
-                            Stage loginStage =(Stage) tfUsuario.getScene().getWindow();
-
-                            // Cerrar ventana de login
-                            Stage loginStage = (Stage) tfUsuario.getScene().getWindow();
+                            //Cerrar ventana anterior
+                            Stage loginStage =(Stage)tfUsuario.getScene().getWindow();
                             loginStage.close();
 
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    }*/
+                    }
                 } else {
                     //TODO contraseña incorrecta
                 }
-            } else { //TODO No existe el usuario o credenciales incorrectas
             }
-
         }
-    }
 
     @FXML
     void limpiar (ActionEvent event){
@@ -108,5 +105,4 @@ public class MenuController {
         System.exit(0);
         //TODO Cerrar la session factory aqui.
     }
-
-    }
+}
