@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class MenuController {
 
     @FXML
     void salir(ActionEvent event) {
-        // Cerrar SessionFactory de Hibernate
+        // Cerrar SessionFactory
         if (HibernateUtil.getSessionFactory() != null) {
             HibernateUtil.getSessionFactory().close();
         }
@@ -126,6 +127,7 @@ public class MenuController {
     private void abrirNuevaVentana(Parent root, String titulo) {
         Stage nuevoStage = new Stage();
         nuevoStage.setTitle(titulo);
+        nuevoStage.getIcons().add(new Image(getClass().getResourceAsStream("/img/ue40px.png")));
         nuevoStage.setScene(new Scene(root));
         nuevoStage.show();
 
