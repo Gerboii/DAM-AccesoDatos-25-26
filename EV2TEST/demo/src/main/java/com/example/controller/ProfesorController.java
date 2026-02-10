@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.modelos.Profesor;
+import com.example.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,6 +44,9 @@ public class ProfesorController {
 
     @FXML
     void salir(ActionEvent event) {
+        if (HibernateUtil.getSessionFactory() != null) {
+            HibernateUtil.getSessionFactory().close();
+        }
         System.exit(0);
     }
     //TODO Arreglar
