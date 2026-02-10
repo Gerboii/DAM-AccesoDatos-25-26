@@ -52,6 +52,7 @@ public class MenuController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profesor.fxml"));
                     //Crear y mostrar nueva ventana
                     Stage stage = new Stage();
+                    //TODO obtener controlador de la ventana de destino
                     stage.setTitle("Gestión de notas-"+user);
                     stage.setScene(new Scene(loader.load()));
                     stage.show();
@@ -64,7 +65,7 @@ public class MenuController {
                 }
 
             } else {
-                //TODO Contraseña incorrecta
+                mostrarAlerta("Login error","Usuario o contraseña incorrectas");
             }
         } else {
             //Si no se encuentra por profe buscamos alumno
@@ -72,11 +73,11 @@ public class MenuController {
             Alumno alumno = alumnoImp.buscarPorDni(user);
             if (alumno != null) {
                 if (alumno.getContrasena().equals(pass)) {
-                    //TODO cambiamos a vista alumno
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/alumno.fxml"));
                             //Crear y mostrar nueva ventana
                             Stage stage = new Stage();
+                            //TODO obtener controlador de la ventana de destino
                             stage.setTitle("Evaluaciones-"+user);
                             stage.setScene(new Scene(loader.load()));
                             stage.show();
@@ -89,7 +90,7 @@ public class MenuController {
                         }
                     }
                 } else {
-                    //TODO contraseña incorrecta
+                     mostrarAlerta("Login error","Usuario o contraseña incorrectas");
                 }
             }
         }
@@ -104,5 +105,13 @@ public class MenuController {
     void salir (ActionEvent event){
         System.exit(0);
         //TODO Cerrar la session factory aqui.
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        javafx.scene.control.Alert alerta = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }
