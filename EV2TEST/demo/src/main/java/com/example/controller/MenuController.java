@@ -93,7 +93,7 @@ public class MenuController {
 
     private void cargarVistaProfesor(Profesor profe) {
         try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/profesor.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/example/profesor.fxml"));
             Parent root = loader.load();
 
             // Pasamos el objeto al controlador de la nueva ventana
@@ -109,7 +109,7 @@ public class MenuController {
 
     private void cargarVistaAlumno(Alumno alumno) {
         try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/alumno.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/example/alumno.fxml"));
             Parent root = loader.load();
 
             // Pasamos el objeto al controlador de la nueva ventana
