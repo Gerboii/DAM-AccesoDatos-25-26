@@ -59,4 +59,21 @@ public class NotaDaoImp {
 
         return listaResultante;
     }*/
+    //Toma una lista de notas y actualiza la BD
+    public void guardarNota(List<Nota> listaNotas){
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
+        try{
+            for(Nota n : listaNotas){
+                session.merge(n); //Merge porque solo vamos a actualizar la base de datos no añadir nuevos registros
+            }
+        }
+        catch(Exception ex){
+            if(transaction!=null){//Se guarda completa o no se guarda nada
+                transaction.rollback();}
+
+        }finally {
+            session.close();
+        }
+    }
 }
