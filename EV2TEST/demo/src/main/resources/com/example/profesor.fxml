@@ -21,7 +21,7 @@
                 </font>
             </Label>
             <Label fx:id="nombreProfesor" layoutX="125.0" layoutY="32.0" text="&quot;Usuario Ejemplo&quot;" />
-            <ComboBox id="cbAsignaturas" fx:id="cbAsignaturas" layoutX="149.0" layoutY="61.0" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
+            <ComboBox id="cbAsignaturas" fx:id="cbAsignaturas" layoutX="149.0" layoutY="61.0" onAction="#seleccionCb" prefHeight="26.0" prefWidth="183.0" promptText="Selecciona" />
             <Label layoutX="33.0" layoutY="60.0" text="Asignaturas:">
                 <font>
                     <Font name="System Bold" size="18.0" />

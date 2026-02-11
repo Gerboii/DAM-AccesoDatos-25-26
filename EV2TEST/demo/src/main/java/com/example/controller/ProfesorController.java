@@ -1,7 +1,9 @@
 package com.example.controller;
 
 import com.example.dao.AsignaturaDaoImp;
+import com.example.dao.NotaDaoImp;
 import com.example.modelos.Asignatura;
+import com.example.modelos.Nota;
 import com.example.modelos.Profesor;
 import com.example.util.HibernateUtil;
 import javafx.collections.FXCollections;
@@ -11,11 +13,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.util.StringConverter;
 import java.util.List;
 
 public class ProfesorController {
-
+    private NotaDaoImp notaDaoImp;
     private Profesor profesorLog;
     private AsignaturaDaoImp asigDao = new AsignaturaDaoImp();
 
@@ -28,6 +31,9 @@ public class ProfesorController {
 
     @FXML
     private Label nombreProfesor;
+
+    @FXML
+    private TableView<Nota> tablaNotas;
 
     @FXML
     public void initialize() {
@@ -74,11 +80,29 @@ public class ProfesorController {
         }
     }
 
+
+
     @FXML
     void salir(ActionEvent event) {
         if (HibernateUtil.getSessionFactory() != null) {
             HibernateUtil.getSessionFactory().close();
         }
         System.exit(0);
+    }
+
+    public void seleccionCb(ActionEvent actionEvent) {
+        Asignatura seleccionada = cbAsignaturas.getSelectionModel().getSelectedItem();
+        if (seleccionada != null) {
+            List<Nota> listaNotas=notaDaoImp.alumAsignatura(seleccionada);
+            //Hay que convertir a observable para el CB
+            ObservableList<Nota> notasObservable = FXCollections.observableArrayList(listaNotas);
+            tablaNotas.setItems(notasObservable);
+        }
+    }
+
+    public void atras(ActionEvent actionEvent) {
+    }
+
+    public void guardar(ActionEvent actionEvent) {
     }
 }
