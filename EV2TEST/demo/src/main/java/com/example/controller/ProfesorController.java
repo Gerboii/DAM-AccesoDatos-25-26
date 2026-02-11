@@ -64,12 +64,23 @@ public class ProfesorController {
 
         columnaNota.setCellFactory(TextFieldTableCell.forTableColumn(new javafx.util.converter.DoubleStringConverter()));
 
-        // 5. Manejo de la edición (Commit)
+        // Manejo de la edición (Commit)
         columnaNota.setOnEditCommit(event -> {
-            // Obtenemos el objeto Nota de la fila editada
-            Nota notaEditada = event.getRowValue();
-            // Actualizamos el valor con el nuevo Double introducido
-            notaEditada.setValorNota(event.getNewValue());
+            //Tomamos valor nuevo
+            Double nuevaNota = event.getNewValue();
+            Nota notaFila = event.getRowValue();
+            //Filtro para solo poder meter notas válidas
+            if (nuevaNota != null && nuevaNota >= 0 && nuevaNota <= 10) {
+                notaFila.setValorNota(nuevaNota);
+            } else {
+                // Si el valor no es válido, refrescamos la tabla para que vuelva al valor anterior
+                tablaNotas.refresh();
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Error");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Introduce un valor entre 0 y 10.");
+                alerta.showAndWait();
+            }
         });
     }
 
