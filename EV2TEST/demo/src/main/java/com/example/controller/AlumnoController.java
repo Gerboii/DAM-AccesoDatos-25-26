@@ -2,8 +2,11 @@ package com.example.controller;
 
 import com.example.Main;
 import com.example.modelos.Alumno;
+import com.example.modelos.Asignatura;
 import com.example.modelos.Profesor;
 import com.example.util.HibernateUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +47,7 @@ public class AlumnoController {
 
     @FXML
     void atras(ActionEvent event) {
-        //TODO sin terminar. Falla, falta cerrar al salir
+        //TODO sin terminar.
 
     }
 
@@ -64,6 +67,7 @@ public class AlumnoController {
     public void setAlumno(Alumno alumno) {
         this.alumnoLog=alumno;
     }
+
     private void cargarVistaLogin() {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/example/interfaz.fxml"));
@@ -88,4 +92,10 @@ public class AlumnoController {
             e.printStackTrace();
         }
     }
+
+    /*private void cargarCombobox() {
+        ObservableList<Asignatura> listaAsignatura = FXCollections.observableArrayList(alumnoLog.getAsignaturas);
+        //listaAsignatura.add();
+        try {}
+    }*/
 }
