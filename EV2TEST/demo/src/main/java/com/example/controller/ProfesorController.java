@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.dao.AsignaturaDaoImp;
 import com.example.dao.NotaDaoImp;
+import com.example.modelos.Alumno;
 import com.example.modelos.Asignatura;
 import com.example.modelos.Nota;
 import com.example.modelos.Profesor;
@@ -10,10 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import java.util.List;
 
@@ -34,6 +32,12 @@ public class ProfesorController {
 
     @FXML
     private TableView<Nota> tablaNotas;
+
+    @FXML
+    private TableColumn<Nota, String> columnaNota;
+
+    @FXML
+    private TableColumn<Nota, Double> columnaAlumno;
 
     @FXML
     public void initialize() {

@@ -31,8 +31,8 @@
                   <children>
                       <TableView id="tablaNotas" layoutX="31.0" layoutY="106.0" prefHeight="398.0" prefWidth="494.0">
                           <columns>
-                              <TableColumn prefWidth="375.2000301480293" text="Alumno" />
-                              <TableColumn prefWidth="118.39993286132812" text="Nota" />
+                              <TableColumn fx:id="columnaAlumno" prefWidth="375.2000301480293" text="Alumno" />
+                              <TableColumn fx:id="columnaNota" prefWidth="118.39993286132812" text="Nota" />
                           </columns>
                       </TableView>
                   </children>
