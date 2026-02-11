@@ -7,12 +7,17 @@ import com.example.modelos.Asignatura;
 import com.example.modelos.Nota;
 import com.example.modelos.Profesor;
 import com.example.util.HibernateUtil;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+import javafx.util.converter.DoubleStringConverter;
+
 import java.util.List;
 
 public class ProfesorController {
@@ -34,18 +39,38 @@ public class ProfesorController {
     private TableView<Nota> tablaNotas;
 
     @FXML
-    private TableColumn<Nota, String> columnaNota;
+    private TableColumn<Nota, String> columnaAlumno;
 
     @FXML
-    private TableColumn<Nota, Double> columnaAlumno;
+    private TableColumn<Nota, Double> columnaNota;
 
     @FXML
     public void initialize() {
-        //ComboBox por defecto sin selección y con texto de ayuda.
+        //Iniciamos combo
         cbAsignaturas.setPromptText("Seleccione asignatura");
-        // Aquí configuraremos las columnas de la TableView
 
-        // No cargamos datos aquí porque profesorLog aún es null
+        //Recibe Nota, devuelve String (Nombre) -> OK
+        columnaAlumno.setCellValueFactory(cellData -> {
+            String nombre = cellData.getValue().getAlumno().getNombre();
+            return new SimpleStringProperty(nombre);
+        });
+
+        // Recibe Nota, devuelve Double
+        // Usamos PropertyValueFactory conversión a Observable
+        columnaNota.setCellValueFactory(new PropertyValueFactory<>("valorNota"));
+
+        //Habilitar edición
+        tablaNotas.setEditable(true);
+
+        columnaNota.setCellFactory(TextFieldTableCell.forTableColumn(new javafx.util.converter.DoubleStringConverter()));
+
+        // 5. Manejo de la edición (Commit)
+        columnaNota.setOnEditCommit(event -> {
+            // Obtenemos el objeto Nota de la fila editada
+            Nota notaEditada = event.getRowValue();
+            // Actualizamos el valor con el nuevo Double introducido
+            notaEditada.setValorNota(event.getNewValue());
+        });
     }
 
     //Se ejecuta cuando entramos desde el login.
