@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.dao.AsignaturaDaoImp;
 import com.example.dao.NotaDaoImp;
-import com.example.modelos.Alumno;
 import com.example.modelos.Asignatura;
 import com.example.modelos.Nota;
 import com.example.modelos.Profesor;
@@ -20,7 +19,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import javafx.util.converter.DoubleStringConverter;
 
 import java.util.List;
 
@@ -127,9 +125,9 @@ public class ProfesorController {
 
     @FXML
     void salir(ActionEvent event) {
-        if (HibernateUtil.getSessionFactory() != null) {
-            HibernateUtil.getSessionFactory().close();
-        }
+       // if (HibernateUtil.getSessionFactory() != null) {
+         //   HibernateUtil.getSessionFactory().close();
+       // }
         System.exit(0);
     }
 

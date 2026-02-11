@@ -14,7 +14,6 @@
 <VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.ProfesorController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="556.0">
         <children>
-            <Button id="btnSalir" fx:id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="83.0" text="Salir" />
             <Label layoutX="33.0" layoutY="27.0" text="Docente:">
                 <font>
                     <Font name="System Bold" size="18.0" />
@@ -29,7 +28,7 @@
             </Label>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="556.0">
                   <children>
-                      <TableView id="tablaNotas" layoutX="31.0" layoutY="106.0" prefHeight="398.0" prefWidth="494.0">
+                      <TableView id="tablaNotas" fx:id="tablaNotas" layoutX="31.0" layoutY="106.0" prefHeight="398.0" prefWidth="494.0">
                           <columns>
                               <TableColumn fx:id="columnaAlumno" prefWidth="375.2000301480293" text="Alumno" />
                               <TableColumn fx:id="columnaNota" prefWidth="118.39993286132812" text="Nota" />
@@ -37,6 +36,7 @@
                       </TableView>
                   </children>
               </AnchorPane>
+            <Button id="btnSalir" fx:id="btnSalir" layoutX="458.0" layoutY="533.0" mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="83.0" text="Salir" />
             <ImageView id="logoUem" fitHeight="84.0" fitWidth="106.0" layoutX="425.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../img/Universidad-europea-logo.png" />

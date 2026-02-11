@@ -18,6 +18,7 @@ public class Main extends Application {
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/ue40px.png")));
        stage.setScene(scene);
        stage.centerOnScreen();
+
        stage.show();
     }
 
