@@ -12,9 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 
@@ -142,6 +146,23 @@ public class ProfesorController {
 
     @FXML
     public void atras(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/interfaz.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Stage actual a partir del evento del botón
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Login UEM");
+            stage.setResizable(false);
+            //Carga Icono
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/ue40px.png")));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void guardar(ActionEvent actionEvent) {

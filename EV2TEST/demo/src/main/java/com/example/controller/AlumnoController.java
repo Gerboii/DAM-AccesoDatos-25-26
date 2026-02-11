@@ -47,8 +47,23 @@ public class AlumnoController {
 
     @FXML
     void atras(ActionEvent event) {
-        //TODO sin terminar.
+        /*try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/interfaz.fxml"));
+            Scene scene = new Scene(loader.load());
 
+            // Stage actual a partir del evento del botón
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Login UEM");
+            stage.setResizable(false);
+            //Carga Icono
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/img/ue40px.png")));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 
     @FXML
