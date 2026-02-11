@@ -120,8 +120,6 @@ public class ProfesorController {
         }
     }
 
-
-
     @FXML
     void salir(ActionEvent event) {
         if (HibernateUtil.getSessionFactory() != null) {
@@ -144,5 +142,28 @@ public class ProfesorController {
     }
 
     public void guardar(ActionEvent actionEvent) {
+        //Obtenemos la lista de la tabla.
+
+        List<Nota> listaParaGuardar = tablaNotas.getItems();
+
+        if (listaParaGuardar != null && !listaParaGuardar.isEmpty()) {
+            try {
+                notaDaoImp.guardarNota(listaParaGuardar);
+
+                // Persistencia exitosa
+                Alert exito = new Alert(Alert.AlertType.INFORMATION);
+                exito.setTitle("Confirmación");
+                exito.setHeaderText(null);
+                exito.setContentText("Las calificaciones se han sincronizado con la base de datos.");
+                exito.show();
+
+            } catch (Exception e) {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setTitle("Error");
+                error.setContentText("No se han guardado los cambios.");
+                error.show();
+                e.printStackTrace();
+            }
+        }
     }
 }
