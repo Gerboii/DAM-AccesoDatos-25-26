@@ -16,7 +16,7 @@ module com.example {
     opens com.example.controller to javafx.fxml;
 
     // 2. Permite a Hibernate tocar tus modelos (Entidades)
-    opens com.example.modelos to org.hibernate.orm.core;
+    opens com.example.modelos to org.hibernate.orm.core, javafx.base;
 
     // 3. Exporta el paquete principal para que arranque
     exports com.example;

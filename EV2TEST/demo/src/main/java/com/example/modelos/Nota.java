@@ -27,4 +27,8 @@ public class Nota {
     @Column(name="nota")
     private double valorNota;
 
+    public double getValorNota() {
+        return valorNota;
+    }
+
 }

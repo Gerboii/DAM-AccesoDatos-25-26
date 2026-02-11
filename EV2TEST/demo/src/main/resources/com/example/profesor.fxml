@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" prefHeight="573.0" prefWidth="556.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.ProfesorController">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="585.0" prefWidth="556.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" pickOnBounds="false" prefHeight="585.0" prefWidth="556.0">
         <children>
             <Label layoutX="33.0" layoutY="27.0" text="Docente:">
                 <font>
@@ -26,7 +26,7 @@
                     <Font name="System Bold" size="18.0" />
                 </font>
             </Label>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="556.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" pickOnBounds="false" prefHeight="574.0" prefWidth="556.0">
                   <children>
                       <TableView id="tablaNotas" fx:id="tablaNotas" layoutX="31.0" layoutY="106.0" prefHeight="398.0" prefWidth="494.0">
                           <columns>
