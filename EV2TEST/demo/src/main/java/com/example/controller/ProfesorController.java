@@ -21,7 +21,7 @@ import javafx.util.converter.DoubleStringConverter;
 import java.util.List;
 
 public class ProfesorController {
-    private NotaDaoImp notaDaoImp;
+    private NotaDaoImp notaDaoImp = new NotaDaoImp();
     private Profesor profesorLog;
     private AsignaturaDaoImp asigDao = new AsignaturaDaoImp();
 
@@ -129,6 +129,7 @@ public class ProfesorController {
         System.exit(0);
     }
 
+    @FXML
     public void seleccionCb(ActionEvent actionEvent) {
         Asignatura seleccionada = cbAsignaturas.getSelectionModel().getSelectedItem();
         if (seleccionada != null) {
@@ -139,9 +140,10 @@ public class ProfesorController {
         }
     }
 
+    @FXML
     public void atras(ActionEvent actionEvent) {
     }
-
+    @FXML
     public void guardar(ActionEvent actionEvent) {
         //Obtenemos la lista de la tabla.
 
