@@ -34,6 +34,7 @@ public class ProfesorController {
         //ComboBox por defecto sin selección y con texto de ayuda.
         cbAsignaturas.setPromptText("Seleccione asignatura");
         // Aquí configuraremos las columnas de la TableView
+
         // No cargamos datos aquí porque profesorLog aún es null
     }
 
