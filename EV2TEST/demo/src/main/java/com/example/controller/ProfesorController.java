@@ -69,7 +69,9 @@ public class ProfesorController {
             //Tomamos valor nuevo
             Double nuevaNota = event.getNewValue();
             Nota notaFila = event.getRowValue();
-            //Filtro para solo poder meter notas válidas
+            notaFila.setValorNota(nuevaNota);
+            //No tiene sentido filtrar. Double primitivo no permite null y así podemos poner notas negativas.
+            /*Filtro para solo poder meter notas válidas
             if (nuevaNota != null && nuevaNota >= 0 && nuevaNota <= 10) {
                 notaFila.setValorNota(nuevaNota);
             } else {
@@ -79,8 +81,7 @@ public class ProfesorController {
                 alerta.setTitle("Error");
                 alerta.setHeaderText(null);
                 alerta.setContentText("Introduce un valor entre 0 y 10.");
-                alerta.showAndWait();
-            }
+                alerta.showAndWait();*/
         });
     }
 
