@@ -31,7 +31,9 @@ public class ProfesorController {
 
     @FXML
     public void initialize() {
-        // Aquí configuraremos las columnas de la TableView (cuando la definas)
+        //ComboBox por defecto sin selección y con texto de ayuda.
+        cbAsignaturas.setPromptText("Seleccione asignatura");
+        // Aquí configuraremos las columnas de la TableView
         // No cargamos datos aquí porque profesorLog aún es null
     }
 
@@ -44,10 +46,10 @@ public class ProfesorController {
             nombreProfesor.setText(profe.getNombre());
         }
 
-        // 2. Llamamos al DAO para traer las asignaturas de este profesor
+        // Llamamos al DAO para traer las asignaturas de este profesor
         List<Asignatura> listaAsig = asigDao.listarPorProfesor(profe.getDniProfesor());
 
-        // 3. Llenamos el combo
+        // Llenamos el combo
         cargarComboBox(listaAsig);
     }
 
@@ -56,8 +58,7 @@ public class ProfesorController {
             ObservableList<Asignatura> obsList = FXCollections.observableArrayList(asignaturas);
             cbAsignaturas.setItems(obsList);
 
-            // 4. TRUCO VISUAL: El 'Converter' sirve para que el combo muestre
-            // el NOMBRE de la asignatura y no la dirección de memoria del objeto.
+            // El Converter sirve para que el combo muestre el NOMBRE de la asignatura y no la dirección  del objeto.
             cbAsignaturas.setConverter(new StringConverter<Asignatura>() {
                 @Override
                 public String toString(Asignatura asig) {
@@ -69,9 +70,6 @@ public class ProfesorController {
                     return null; // No necesario para selección simple
                 }
             });
-
-            // Seleccionamos la primera por defecto
-            cbAsignaturas.getSelectionModel().selectFirst();
         }
     }
 
