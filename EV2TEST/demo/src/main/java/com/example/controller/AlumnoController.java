@@ -1,12 +1,10 @@
 package com.example.controller;
 
-import com.example.Main;
 import com.example.dao.AsignaturaDaoImp;
 import com.example.dao.NotaDaoImp;
 import com.example.modelos.Alumno;
 import com.example.modelos.Asignatura;
 import com.example.modelos.Nota;
-import com.example.modelos.Profesor;
 import com.example.util.HibernateUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -14,20 +12,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-
-import java.io.IOException;
 import java.util.List;
 
 public class AlumnoController {
@@ -60,12 +53,12 @@ public class AlumnoController {
     public void initialize() {
         //Iniciamos combo
         cbAsignaturas.setPromptText("Seleccione asignatura");
-
-        //Columnas (Solo lectura)
-        columnAsignatura.setCellValueFactory(cellData -> {
-            String nombre = cellData.getValue().getAsignatura().getNombre();
-            return new SimpleStringProperty(nombre);
-        });
+        //Columna ASIGNATURA
+        columnAsignatura.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getAsignatura().getNombre()));
+        //Columna NOTA
+        columnNota.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.valueOf(cellData.getValue().getValorNota())));
     }
 
     @FXML
@@ -114,7 +107,7 @@ public class AlumnoController {
                     tablaAlumno.getItems().clear();
                 }
             }
-        }else{}
+        }
     }
 
     public void setAlumno(Alumno alumno) {
@@ -135,6 +128,7 @@ public class AlumnoController {
         Asignatura todas = new  Asignatura();
         todas.setNombre("Mostrar todas");
         obsList.add(todas);
+        cbAsignaturas.setItems(obsList);
         //Converter para sacar nombre
         cbAsignaturas.setConverter(new  StringConverter<Asignatura>() {
             @Override
