@@ -46,8 +46,8 @@ public class AlumnoController {
     private TableView<?> tablaAlumno;
 
     @FXML
-    void atras(ActionEvent event) {
-        /*try {
+    void atras(ActionEvent actionEvent) {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/interfaz.fxml"));
             Scene scene = new Scene(loader.load());
 
@@ -63,7 +63,7 @@ public class AlumnoController {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @FXML
@@ -83,34 +83,4 @@ public class AlumnoController {
         this.alumnoLog=alumno;
     }
 
-    private void cargarVistaLogin() {
-        try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/example/interfaz.fxml"));
-            Stage nuevoStage = new Stage();
-            Scene scene = new Scene(loader.load());
-            nuevoStage.setTitle("Login UEM");
-            nuevoStage.setResizable(false);
-            //Carga Icono
-            nuevoStage.getIcons().add(new Image(getClass().getResourceAsStream("/img/ue40px.png")));
-            nuevoStage.setScene(scene);
-            nuevoStage.centerOnScreen();
-            nuevoStage.show();
-
-            //TODO Arreglar esto
-
-            // Cerrar ventana de alumno actual
-           /* Stage alumnoStage = (Stage) tfUsuario.getScene().getWindow();
-            alumnoStage.close();*/
-
-        } catch (IOException e) {
-            System.err.println("Error cargando interfaz.fxml: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /*private void cargarCombobox() {
-        ObservableList<Asignatura> listaAsignatura = FXCollections.observableArrayList(alumnoLog.getAsignaturas);
-        //listaAsignatura.add();
-        try {}
-    }*/
 }
