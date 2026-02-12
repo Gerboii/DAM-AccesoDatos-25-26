@@ -85,6 +85,7 @@ public class NotaDaoImp {
             for(Nota n : listaNotas){
                 session.merge(n); //Merge porque solo vamos a actualizar la base de datos no añadir nuevos registros
             }
+            transaction.commit();
         }
         catch(Exception ex){
             if(transaction!=null){//Se guarda completa o no se guarda nada
