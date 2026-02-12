@@ -1,10 +1,14 @@
 package com.example.controller;
 
 import com.example.Main;
+import com.example.dao.AsignaturaDaoImp;
+import com.example.dao.NotaDaoImp;
 import com.example.modelos.Alumno;
 import com.example.modelos.Asignatura;
+import com.example.modelos.Nota;
 import com.example.modelos.Profesor;
 import com.example.util.HibernateUtil;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,13 +21,20 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AlumnoController {
+    private NotaDaoImp notaDaoImp=new NotaDaoImp();
+    private AsignaturaDaoImp asignaturaDaoImp=new AsignaturaDaoImp();
     private Alumno alumnoLog;
+
     @FXML
     private Button btnAtras;
 
@@ -31,19 +42,31 @@ public class AlumnoController {
     private Button btnSalir;
 
     @FXML
-    private ComboBox<?> cbAsignaturas;
+    private ComboBox<Asignatura> cbAsignaturas;
 
     @FXML
-    private TableColumn<?, ?> columnAsignatura;
+    private TableColumn<Nota,String> columnAsignatura;
 
     @FXML
-    private TableColumn<?, ?> columnNota;
+    private TableColumn<Nota,String> columnNota;
 
     @FXML
     private Label nombreAlumno;
 
     @FXML
-    private TableView<?> tablaAlumno;
+    private TableView<Nota> tablaAlumno;
+
+    @FXML
+    public void initialize() {
+        //Iniciamos combo
+        cbAsignaturas.setPromptText("Seleccione asignatura");
+
+        //Columnas (Solo lectura)
+        columnAsignatura.setCellValueFactory(cellData -> {
+            String nombre = cellData.getValue().getAsignatura().getNombre();
+            return new SimpleStringProperty(nombre);
+        });
+    }
 
     @FXML
     void atras(ActionEvent actionEvent) {
@@ -76,11 +99,50 @@ public class AlumnoController {
 
     @FXML
     void seleccionAsignaturaAlumno(ActionEvent event) {
-
+        Asignatura asignatura = cbAsignaturas.getSelectionModel().getSelectedItem();
+        if (asignatura != null){
+            if (asignatura.getNombre().equals("Mostrar todas")){
+                //Mostramos todo el boletin
+                List<Nota>todas= notaDaoImp.mostrarEvaluacion(alumnoLog.getDniAlumno());
+                tablaAlumno.setItems(FXCollections.observableArrayList(todas));
+            }else{
+                //Mostramos nota específica
+                Nota miNota = notaDaoImp.mostrarNota(asignatura,alumnoLog);
+                if (miNota != null){
+                    tablaAlumno.setItems(FXCollections.observableArrayList(miNota));
+                }else {
+                    tablaAlumno.getItems().clear();
+                }
+            }
+        }else{}
     }
 
     public void setAlumno(Alumno alumno) {
         this.alumnoLog=alumno;
+        if (nombreAlumno!=null) {
+            nombreAlumno.setText(alumno.getNombre());
+        }
+        List<Asignatura> listaAsig= asignaturaDaoImp.listarPorAlumno(alumno.getDniAlumno());
+        cargarComboBox(listaAsig);
+    }
+
+    private void cargarComboBox(List<Asignatura> listaAsig) {
+        ObservableList<Asignatura> obsList=FXCollections.observableArrayList();
+        if(listaAsig!=null){
+            obsList.addAll(listaAsig);
+        }
+        //Opcion mostrar todas
+        Asignatura todas = new  Asignatura();
+        todas.setNombre("Mostrar todas");
+        obsList.add(todas);
+        //Converter para sacar nombre
+        cbAsignaturas.setConverter(new  StringConverter<Asignatura>() {
+            @Override
+            public String toString(Asignatura asignatura) {
+                return (asignatura != null) ? asignatura.getNombre() : "";}
+            @Override
+            public Asignatura fromString(String string) {return null;}
+        });
     }
 
 }
