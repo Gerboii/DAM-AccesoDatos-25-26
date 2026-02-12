@@ -103,6 +103,7 @@ public class ProfesorController {
         cargarComboBox(listaAsig);
     }
 
+//TODO Arreglar respuesta COmboBox
     private void cargarComboBox(List<Asignatura> asignaturas) {
         if (asignaturas != null && !asignaturas.isEmpty()) {
             ObservableList<Asignatura> obsList = FXCollections.observableArrayList(asignaturas);
@@ -125,9 +126,9 @@ public class ProfesorController {
 
     @FXML
     void salir(ActionEvent event) {
-       // if (HibernateUtil.getSessionFactory() != null) {
-         //   HibernateUtil.getSessionFactory().close();
-       // }
+        if (HibernateUtil.getSessionFactory() != null) {
+            HibernateUtil.getSessionFactory().close();
+        }
         System.exit(0);
     }
 
