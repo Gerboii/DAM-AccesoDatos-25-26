@@ -103,7 +103,6 @@ public class ProfesorController {
         cargarComboBox(listaAsig);
     }
 
-//TODO Arreglar respuesta COmboBox
     private void cargarComboBox(List<Asignatura> asignaturas) {
         if (asignaturas != null && !asignaturas.isEmpty()) {
             ObservableList<Asignatura> obsList = FXCollections.observableArrayList(asignaturas);
@@ -132,6 +131,7 @@ public class ProfesorController {
         System.exit(0);
     }
 
+    //TODO Arreglar guardado
     @FXML
     public void seleccionCb(ActionEvent actionEvent) {
         Asignatura seleccionada = cbAsignaturas.getSelectionModel().getSelectedItem();
@@ -163,6 +163,8 @@ public class ProfesorController {
             e.printStackTrace();
         }
     }
+
+    //TODO Recargar Tabla al Guardar
     @FXML
     public void guardar(ActionEvent actionEvent) {
         //Obtenemos la lista de la tabla.
