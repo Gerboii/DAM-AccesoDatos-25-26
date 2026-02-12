@@ -10,7 +10,6 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         if(sessionFactory == null){
             try {
-                // 1-> Creas una session factory
                 sessionFactory = new Configuration().configure().buildSessionFactory();
             } catch (Throwable e) {
                 System.err.println("Fallo el crear sessionFactory: "+e.getMessage());

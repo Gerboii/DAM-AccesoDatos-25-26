@@ -23,7 +23,13 @@ import java.io.IOException;
 public class MenuController {
 
     @FXML
-    private Button btnEntrar, btnLimpiar, btnSalir;
+    private Button btnEntrar;
+
+    @FXML
+    private Button btnLimpiar;
+
+    @FXML
+    private Button btnSalir;
 
     @FXML
     private PasswordField pfContrasena;

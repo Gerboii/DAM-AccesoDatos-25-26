@@ -28,7 +28,13 @@ public class ProfesorController {
     private AsignaturaDaoImp asigDao = new AsignaturaDaoImp();
 
     @FXML
-    private Button btnAtras, btnGuardar, btnSalir;
+    private Button btnAtras;
+
+    @FXML
+    private Button btnGuardar;
+
+    @FXML
+    private Button btnSalir;
 
     // ComboBox maneja objetos 'Asignatura'
     @FXML
@@ -131,7 +137,6 @@ public class ProfesorController {
         System.exit(0);
     }
 
-    //TODO Arreglar guardado
     @FXML
     public void seleccionCb(ActionEvent actionEvent) {
         Asignatura seleccionada = cbAsignaturas.getSelectionModel().getSelectedItem();
@@ -164,7 +169,6 @@ public class ProfesorController {
         }
     }
 
-    //TODO Recargar Tabla al Guardar
     @FXML
     public void guardar(ActionEvent actionEvent) {
         //Obtenemos la lista de la tabla.
@@ -174,6 +178,12 @@ public class ProfesorController {
         if (listaParaGuardar != null && !listaParaGuardar.isEmpty()) {
             try {
                 notaDaoImp.guardarNota(listaParaGuardar);
+                //Recargar tabla tras guardar
+               /* Asignatura seleccionada = cbAsignaturas.getSelectionModel().getSelectedItem();
+                if (seleccionada != null) {
+                    List<Nota> listaActualizada = notaDaoImp.alumAsignatura(seleccionada);
+                    tablaNotas.setItems(FXCollections.observableArrayList(listaActualizada));
+                }*/
 
                 // Persistencia exitosa
                 Alert exito = new Alert(Alert.AlertType.INFORMATION);

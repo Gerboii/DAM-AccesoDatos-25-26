@@ -4,7 +4,6 @@ import com.example.modelos.Profesor;
 import com.example.util.HibernateUtil;
 import org.hibernate.Session;
 
-
 public class ProfesorDaoImp {
 
     public Profesor buscarPorDni(String dni){

@@ -10,14 +10,12 @@ module com.example {
     requires java.sql;
     requires static lombok;
 
-    // ABRIR paquetes:
-
-    // 1. Permite a JavaFX tocar tu controlador
+    // Permite a JavaFX tocar tu controlador
     opens com.example.controller to javafx.fxml;
 
-    // 2. Permite a Hibernate tocar tus modelos (Entidades)
+    // Permite a Hibernate y Java FX tocar modelos
     opens com.example.modelos to org.hibernate.orm.core, javafx.base;
 
-    // 3. Exporta el paquete principal para que arranque
+    // Exporta el paquete principal para que se lance
     exports com.example;
 }
