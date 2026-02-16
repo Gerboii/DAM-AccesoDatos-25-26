@@ -3,12 +3,14 @@ package com.example.modelos;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
 @Table(name ="nota")
 public class Nota {
 //Meto un Id para no tener que crear una clase independiente con las dos FKs
@@ -26,9 +28,5 @@ public class Nota {
 
     @Column(name="nota")
     private double valorNota;
-
-    public double getValorNota() {
-        return valorNota;
-    }
 
 }
